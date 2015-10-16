@@ -32,12 +32,15 @@ class Model_Admin extends Model
         return $result_one;
     }
     
-    public function updateContent()
+    public function updateContent($title, $content, $urlCont, $table, $url)
     {
-        $data = 'ok';
-        header('location:/');
-        
-        return $data;
+        try {
+            $data = $this->connect()->query("UPDATE $table SET title='$title', content='$content', url='$urlCont' WHERE url='$url'");
+            header('location:/admin/?'.$table.'/'.$url);
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return ($data)? 'Успе':'Не успех';
     }
 }
 

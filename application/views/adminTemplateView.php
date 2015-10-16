@@ -9,6 +9,8 @@
         <link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
+<!--        <script type="text/javascript" src="/AjexFileManager/ajex.js"></script>-->
         <script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
         <script type="text/javascript">
         // return a random integer between 0 and number
@@ -52,8 +54,8 @@
                             <ul class="list">
                                 <li class="first "><a href="/">Главная!</a></li>
                                 <li><a href="/admin?page/uslugi">Услуги</a></li>
-                                <li><a href="/portfolio">Портфолио</a></li>
-                                <li class="last"><a href="/contacts">Контакты</a></li>
+                                <li><a href="/admin?portfolio">Портфолио</a></li>
+                                <li class="last"><a href="/admin?page/contacts">Контакты</a></li>
                                 <li class="last"><a href="/admin?posts">Блог</a></li>
                                 <?php 
                                     if(isset($_SESSION['userName'])){

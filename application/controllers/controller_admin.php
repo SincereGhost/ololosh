@@ -27,10 +27,13 @@ class Controller_Admin extends Controller
                     $this->view->generate('listResultAdmin_view.php', $data, 'adminTemplateView.php');
                 } else {
                     if (!empty($_POST)){
+                        $title = $_POST['title'];
+                        $content = $_POST['txt'];
+                        $urlCont = $_POST['url'];
                         var_dump($_POST);
                         var_dump($fulUrl[0]);
-//                        $data = $this->model->updateContent();
-//                        $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
+                        $data = $this->model->updateContent($title, $content, $urlCont, $fulUrl[0], $fulUrl[1]);
+                        $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
                    } else {
                         var_dump($fulUrl[1]);
                         $data = $this->model->getContent($fulUrl[0], $fulUrl[1]);
