@@ -5,7 +5,7 @@ class Model_Admin extends Model
     public function getContentOne($table)
     {
         try {
-            $data = $this->connect()->query("SELECT * FROM  $table");
+            $data = $this->connect()->query("SELECT id, title, content, url FROM  $table");
             $result=[];
             $i=0;
             $count = $data->num_rows - 1;
@@ -23,7 +23,7 @@ class Model_Admin extends Model
     public function getContent($table, $url)
     {
         try {
-            $data = $this->connect()->query("SELECT * FROM  $table WHERE url='$url'");
+            $data = $this->connect()->query("SELECT id, title, content, url FROM  $table WHERE url='$url'");
             $result_one = mysqli_fetch_assoc($data);
         } catch (Exception $ex) {
             echo $ex->getMessage();
