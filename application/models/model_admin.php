@@ -40,7 +40,7 @@ class Model_Admin extends Model
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
-        return ($data)? 'Успе':'Не успех';
+        return ($data)? 'Успеx':'Не успех';
     }
 }
 

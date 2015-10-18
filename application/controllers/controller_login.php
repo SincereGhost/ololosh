@@ -14,7 +14,6 @@ class Controller_Login extends Controller
     {
         if (!isset($_SESSION['user'])) {
             if ((isset($_POST['username'])) && (isset($_POST['password']))) {
-                
                 $data = $this->model->autoriz($_POST['username'], $_POST['password']);
                 $this->view->generate('admin_view.php', $data);
             }

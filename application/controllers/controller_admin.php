@@ -13,6 +13,7 @@ class Controller_Admin extends Controller
     public function action_index()
     {
         if (!isset($_SESSION['user'])) {
+            header('location:/login');
             $this->view->generate('login_view.php');
         } else {
             if (empty($_GET)) {
@@ -22,7 +23,6 @@ class Controller_Admin extends Controller
                 $mykey = key($_GET);
                 $fulUrl = explode('/', $mykey);
                 if (empty($fulUrl[1])) {
-                    var_dump($fulUrl[0]);
                     $data = $this->model->getContentOne($fulUrl[0]);
                     $this->view->generate('listResultAdmin_view.php', $data, 'adminTemplateView.php');
                 } else {
@@ -30,12 +30,9 @@ class Controller_Admin extends Controller
                         $title = $_POST['title'];
                         $content = $_POST['txt'];
                         $urlCont = $_POST['url'];
-                        var_dump($_POST);
-                        var_dump($fulUrl[0]);
                         $data = $this->model->updateContent($title, $content, $urlCont, $fulUrl[0], $fulUrl[1]);
                         $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
                    } else {
-                        var_dump($fulUrl[1]);
                         $data = $this->model->getContent($fulUrl[0], $fulUrl[1]);
                         $this->view->generate('editAdmin_view.php', $data, 'adminTemplateView.php');
                    }
