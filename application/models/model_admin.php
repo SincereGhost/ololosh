@@ -2,7 +2,7 @@
 
 class Model_Admin extends Model
 {
-    public function getContentOne($table)
+    public function getContentList($table)
     {
         try {
             $data = $this->connect()->query("SELECT id, title, content, url FROM  $table");
@@ -13,11 +13,21 @@ class Model_Admin extends Model
                 $result[]=mysqli_fetch_assoc($data);
                 $i++;
             }
+            $val=[];
+            foreach ($result as $value)
+            {   
+                
+                $value['content'] = mb_substr($value['content'], 0, 50, 'utf-8').'...';
+                $val[] = $value;
+                
+                
+            }
+//            var_dump($val);
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
         
-        return $result;
+        return $val;
     }
     
     public function getContent($table, $url)
@@ -36,7 +46,7 @@ class Model_Admin extends Model
     {
         try {
             $data = $this->connect()->query("UPDATE $table SET title='$title', content='$content', url='$urlCont' WHERE url='$url'");
-            header('location:/admin/?'.$table.'/'.$url);
+            header('location:/admin?'.$table);
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }

@@ -35,7 +35,7 @@
             <div class="title_sidebar">
             <?php 
                 if(isset($_SESSION['userName'])){
-                    echo '<h4>Вы вошли как: '.$_SESSION['userName'].'</h4>';
+                    echo '<h4>Вы вошли как: <a href="/admin">'.$_SESSION['userName'].'</a></h4>';
                 }
              ?>
             </div>

@@ -23,7 +23,7 @@ class Controller_Admin extends Controller
                 $mykey = key($_GET);
                 $fulUrl = explode('/', $mykey);
                 if (empty($fulUrl[1])) {
-                    $data = $this->model->getContentOne($fulUrl[0]);
+                    $data = $this->model->getContentList($fulUrl[0]);
                     $this->view->generate('listResultAdmin_view.php', $data, 'adminTemplateView.php');
                 } else {
                     if (!empty($_POST)){
