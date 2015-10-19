@@ -20,8 +20,7 @@ class Controller_Admin extends Controller
                 $data = 'Добро пожаловать '.$_SESSION['userName'];
                 $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
             } else {
-                $mykey = key($_GET);
-                $fulUrl = explode('/', $mykey);
+                $fulUrl = $this->model->readGet($_GET);
                 if (empty($fulUrl[1])) {
                     $data = $this->model->getContentList($fulUrl[0]);
                     $this->view->generate('listResultAdmin_view.php', $data, 'adminTemplateView.php');
@@ -41,9 +40,22 @@ class Controller_Admin extends Controller
         }
     }
     
-    public static function menu()
+    public function action_delPost()
     {
-        $test = 'privet';
-        echo $test;
+        $fulUrl = $this->model->readGet($_GET);
+        $data = $this->model->delPost($fulUrl[0], $fulUrl[1]);
+    }
+    
+    public function addPost()
+    {
+        $fulUrl = $this->model->readGet($_GET);
+         if (!empty($_POST)){
+            $title = $_POST['title'];
+            $content = $_POST['txt'];
+            $urlCont = $_POST['url'];
+            $data = $this->model->addPost($fulUrl[0], $fulUrl[1]);
+        }
+        $this->view->generate('addAdmin_view.php', $data, 'adminTemplateView.php');
+        
     }
 }

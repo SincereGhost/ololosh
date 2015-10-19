@@ -2,6 +2,14 @@
 
 class Model_Admin extends Model
 {
+    public function readGet($get) 
+    {
+        $mykey = key($_GET);
+        $fulUrl = explode('/', $mykey);
+        
+        return $fulUrl;
+    }
+    
     public function getContentList($table)
     {
         try {
@@ -15,14 +23,10 @@ class Model_Admin extends Model
             }
             $val=[];
             foreach ($result as $value)
-            {   
-                
+            {       
                 $value['content'] = mb_substr($value['content'], 0, 50, 'utf-8').'...';
                 $val[] = $value;
-                
-                
             }
-//            var_dump($val);
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
@@ -46,6 +50,28 @@ class Model_Admin extends Model
     {
         try {
             $data = $this->connect()->query("UPDATE $table SET title='$title', content='$content', url='$urlCont' WHERE url='$url'");
+            header('location:/admin?'.$table);
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return ($data)? 'Успеx':'Не успех';
+    }
+    
+    public function delPost($table, $url)
+    {
+        try {
+            $data = $this->connect()->query("DELETE FROM $table WHERE url='$url'");
+            header('location:/admin?'.$table);
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return ($data)? 'Успеx':'Не успех';
+    }
+    
+    public function addPost($table)
+    {
+        try {
+            $data = $this->connect()->query("DELETE FROM $table WHERE url='$url'");
             header('location:/admin?'.$table);
         } catch (Exception $ex) {
             echo $ex->getMessage();
