@@ -46,14 +46,13 @@ class Controller_Admin extends Controller
         $data = $this->model->delPost($fulUrl[0], $fulUrl[1]);
     }
     
-    public function addPost()
+    public function action_addPost()
     {
-        $fulUrl = $this->model->readGet($_GET);
+        $data = null;
          if (!empty($_POST)){
-            $title = $_POST['title'];
-            $content = $_POST['txt'];
-            $urlCont = $_POST['url'];
-            $data = $this->model->addPost($fulUrl[0], $fulUrl[1]);
+            $fulUrl = $this->model->readGet($_GET);
+            $postResult = $this->model->readPost($_POST);
+            $data = $this->model->addPost($postResult['title'], $postResult['content'], $postResult['url'], $fulUrl[0]);
         }
         $this->view->generate('addAdmin_view.php', $data, 'adminTemplateView.php');
         

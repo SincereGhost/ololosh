@@ -11,7 +11,7 @@
             <div class="panel-body">
                 <p><?php echo $row['content']; ?></p>
             </div>
-            <div class="panel-footer">
+            <div class="panel-footer <?php echo $row['class']; ?>">
                <a href="?<?php echo $urlPage.'/'.$row['url']; ?>" class="btn btn-lg btn-success btn-block edit_button">Редактировать</a>
                <a href="/admin/delPost?<?php echo $urlPage.'/'.$row['url']; ?>" class="btn btn-lg btn-success btn-block del_button">Удалить</a>
             </div>
