@@ -56,6 +56,9 @@
                 <li>
                     <a href="/admin?page">Страницы</a>
                 </li>
+                <li>
+                    <a href="/admin?manager_user">Пользователи</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

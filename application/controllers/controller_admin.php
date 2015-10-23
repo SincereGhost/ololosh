@@ -23,13 +23,11 @@ class Controller_Admin extends Controller
                 $fulUrl = $this->model->readGet($_GET);
                 if (empty($fulUrl[1])) {
                     $data = $this->model->getContentList($fulUrl[0]);
-                    $this->view->generate('listResultAdmin_view.php', $data, 'adminTemplateView.php');
+                    $this->view->generate($data[0]['templateName'].'.php', $data, 'adminTemplateView.php');
                 } else {
                     if (!empty($_POST)){
-                        $title = $_POST['title'];
-                        $content = $_POST['txt'];
-                        $urlCont = $_POST['url'];
-                        $data = $this->model->updateContent($title, $content, $urlCont, $fulUrl[0], $fulUrl[1]);
+                        $postResult = $this->model->readPost($_POST);
+                        $data = $this->model->updateContent($postResult['title'], $postResult['content'], $postResult['url'], $fulUrl[0], $fulUrl[1]);
                         $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
                    } else {
                         $data = $this->model->getContent($fulUrl[0], $fulUrl[1]);
