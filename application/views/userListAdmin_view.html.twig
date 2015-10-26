@@ -1,0 +1,10 @@
+{% extends 'adminTemplate.html.twig' %}
+{% block content %}
+<ul>
+    {% for content in list %}
+    <li>
+        <h1>{{ content['login']|raw }}</h1>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

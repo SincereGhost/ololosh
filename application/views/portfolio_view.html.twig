@@ -1,0 +1,17 @@
+{% extends 'template_view.html.twig' %}
+{% block content %}
+    <h1>Портфолио</h1>
+    {% for post in portfolio %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ post['title']|raw }}</h3>
+            </div>
+            <div class="panel-body">
+                <p>{{ post['content']|raw }}</p>
+            </div>
+            <div class="panel-footer">
+               <a href="?{{ url }}/{{ post['url']|raw }}" class="btn btn-lg btn-success btn-block edit_button">Просмотреть</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

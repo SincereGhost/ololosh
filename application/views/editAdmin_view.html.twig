@@ -1,0 +1,18 @@
+{% extends 'adminTemplate.html.twig' %}
+{% block content %}
+    <div class="panel panel-default">
+        <form method="post" action="">
+            <div class="panel-heading">
+                <label>Редактировать заголовок</label>
+                <input type="text" name="title" value="{{ content['title']|raw }}"/>
+                <label>Редактировать ссылку</label>
+                <input type="text" name="url" value="{{ content['url']|raw }}"/>
+            </div>
+            <div class="panel-body">
+                <label>Редактировать контент</label>
+                <textarea id="editor1" name="txt" cols="100" rows="20">{{ content['content']|raw }}</textarea>
+            </div>
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}
