@@ -13,9 +13,9 @@ class Controller_Admin extends Controller
     public function action_index()
     {
         if (!isset($_SESSION['user'])) {
-            header('location:/login');
-            echo $this->view->render('login_view.html.twig');
-        } else {
+                header('location:/');
+                echo $this->view->render('main_view.html.twig');
+            } else {
             if (empty($_GET)) {
                 $data = 'Добро пожаловать '.$_SESSION['userName'];
                 $arr = array('admin' => $data);
@@ -29,7 +29,7 @@ class Controller_Admin extends Controller
                 } else {
                     if (!empty($_POST)){
                         $postResult = $this->model->readPost($_POST);
-                        $data = $this->model->updateContent($postResult['title'], $postResult['content'], $postResult['url'], $fulUrl[0], $fulUrl[1]);
+                        $data = $this->model->updateContent($postResult['title'], $postResult['content'], $postResult['description'], $postResult['url'], $fulUrl[0], $fulUrl[1]);
                         echo $this->view->render('admin_view.html.twig', $data);
                    } else {
                         $data = $this->model->getContent($fulUrl[0], $fulUrl[1]);
@@ -38,7 +38,8 @@ class Controller_Admin extends Controller
                    }
                 }   
             }
-        }
+        }   
+        
     }
     
     public function action_delPost()
@@ -52,7 +53,7 @@ class Controller_Admin extends Controller
          if (!empty($_POST)){
             $fulUrl = $this->model->readGet($_GET);
             $postResult = $this->model->readPost($_POST);
-            $data = $this->model->addPost($postResult['title'], $postResult['content'], $postResult['url'], $fulUrl[0]);
+            $data = $this->model->addPost($postResult['title'], $postResult['content'], $postResult['description'], $postResult['url'], $fulUrl[0]);
         }
         echo $this->view->render('addAdmin_view.html.twig');   
     }

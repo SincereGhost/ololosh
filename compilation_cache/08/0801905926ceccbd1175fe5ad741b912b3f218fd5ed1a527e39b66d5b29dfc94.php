@@ -21,10 +21,8 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
     {
         // line 1
         echo "<!DOCTYPE html>
-<html lang=\"en\">
-
+<html>
 <head>
-
     <meta charset=\"utf-8\">
     <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
@@ -32,20 +30,20 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
     <meta name=\"author\" content=\"\">
 
     <title>";
-        // line 12
+        // line 10
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
 
     <!-- Bootstrap Core CSS -->
     ";
-        // line 15
+        // line 13
         $this->displayBlock('css', $context, $blocks);
-        // line 19
+        // line 17
         echo "    
     ";
-        // line 20
+        // line 18
         $this->displayBlock('js', $context, $blocks);
-        // line 23
+        // line 36
         echo "    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,7 +59,7 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
         <div id=\"sidebar-wrapper\">
             <div class=\"title_sidebar\">
             <h4>Вы вошли как: <a href=\"/admin\">";
-        // line 37
+        // line 50
         echo twig_escape_filter($this->env, (isset($context["user"]) ? $context["user"] : null), "html", null, true);
         echo "</a></h4>
             </div>
@@ -94,9 +92,9 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
                 <div class=\"row\">
                     <div class=\"col-lg-12\">
                         ";
-        // line 67
+        // line 80
         $this->displayBlock('content', $context, $blocks);
-        // line 68
+        // line 81
         echo "                    </div>
                 </div>
             </div>
@@ -107,10 +105,8 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src=\"/js/jquery.js\"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src=\"/js/bootstrap.min.js\"></script>
     <script type=\"text/javascript\">
         var ckeditor1 = CKEDITOR.replace( 'editor1' );
         AjexFileManager.init({
@@ -125,30 +121,45 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
 </html>";
     }
 
-    // line 12
+    // line 10
     public function block_title($context, array $blocks = array())
     {
         echo "Портфолио";
     }
 
-    // line 15
+    // line 13
     public function block_css($context, array $blocks = array())
     {
-        // line 16
+        // line 14
         echo "        <link href=\"/css/bootstrap.min.css\" rel=\"stylesheet\">
         <link href=\"/css/simple-sidebar.css\" rel=\"stylesheet\">
     ";
     }
 
-    // line 20
+    // line 18
     public function block_js($context, array $blocks = array())
     {
-        // line 21
-        echo "        <script type=\"text/javascript\" src=\"/vendor/ckeditor/ckeditor.js\"></script>
+        // line 19
+        echo "        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>
+        <script>
+            \$(document).ready(function(){
+                //Скрыть PopUp при загрузке страницы    
+                PopUpHide();
+            });
+            //Функция отображения PopUp
+            function PopUpShow(){
+                \$(\"#popup1\").show();
+            }
+            //Функция скрытия PopUp
+            function PopUpHide(){
+                \$(\"#popup1\").hide();
+            }
+        </script>
+        <script type=\"text/javascript\" src=\"/vendor/ckeditor/ckeditor.js\"></script>
     ";
     }
 
-    // line 67
+    // line 80
     public function block_content($context, array $blocks = array())
     {
     }
@@ -165,14 +176,12 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
 
     public function getDebugInfo()
     {
-        return array (  152 => 67,  147 => 21,  144 => 20,  138 => 16,  135 => 15,  129 => 12,  100 => 68,  98 => 67,  65 => 37,  49 => 23,  47 => 20,  44 => 19,  42 => 15,  36 => 12,  23 => 1,);
+        return array (  163 => 80,  143 => 19,  140 => 18,  134 => 14,  131 => 13,  125 => 10,  98 => 81,  96 => 80,  63 => 50,  47 => 36,  45 => 18,  42 => 17,  40 => 13,  34 => 10,  23 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
-/* <html lang="en">*/
-/* */
+/* <html>*/
 /* <head>*/
-/* */
 /*     <meta charset="utf-8">*/
 /*     <meta http-equiv="X-UA-Compatible" content="IE=edge">*/
 /*     <meta name="viewport" content="width=device-width, initial-scale=1">*/
@@ -188,6 +197,21 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
 /*     {% endblock %}*/
 /*     */
 /*     {% block js %}*/
+/*         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*/
+/*         <script>*/
+/*             $(document).ready(function(){*/
+/*                 //Скрыть PopUp при загрузке страницы    */
+/*                 PopUpHide();*/
+/*             });*/
+/*             //Функция отображения PopUp*/
+/*             function PopUpShow(){*/
+/*                 $("#popup1").show();*/
+/*             }*/
+/*             //Функция скрытия PopUp*/
+/*             function PopUpHide(){*/
+/*                 $("#popup1").hide();*/
+/*             }*/
+/*         </script>*/
 /*         <script type="text/javascript" src="/vendor/ckeditor/ckeditor.js"></script>*/
 /*     {% endblock %}*/
 /*     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->*/
@@ -245,10 +269,8 @@ class __TwigTemplate_2d08f98ef25cbe84e2030f09b38fc17d1702305974b0b84b03425f51f0f
 /*     <!-- /#wrapper -->*/
 /* */
 /*     <!-- jQuery -->*/
-/*     <script src="/js/jquery.js"></script>*/
 /* */
 /*     <!-- Bootstrap Core JavaScript -->*/
-/*     <script src="/js/bootstrap.min.js"></script>*/
 /*     <script type="text/javascript">*/
 /*         var ckeditor1 = CKEDITOR.replace( 'editor1' );*/
 /*         AjexFileManager.init({*/

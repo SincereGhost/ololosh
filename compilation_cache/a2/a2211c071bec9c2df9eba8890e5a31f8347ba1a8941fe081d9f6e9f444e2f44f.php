@@ -13,6 +13,8 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
             'title' => array($this, 'block_title'),
             'css' => array($this, 'block_css'),
             'js' => array($this, 'block_js'),
+            'sidebar' => array($this, 'block_sidebar'),
+            'navigation' => array($this, 'block_navigation'),
             'content' => array($this, 'block_content'),
         );
     }
@@ -45,7 +47,7 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
     ";
         // line 20
         $this->displayBlock('js', $context, $blocks);
-        // line 23
+        // line 39
         echo "    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,55 +60,30 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
 <body>
     <div id=\"wrapper\">
         <!-- Sidebar -->
-        <div id=\"sidebar-wrapper\">
-            <div class=\"title_sidebar\">
-            </div>
-            <ul class=\"sidebar-nav\">
-                <li class=\"sidebar-brand\">
-                    <a href=\"/login\">Войти</a>
-                </li>
-                <li>
-                    <a href=\"/\">Главная</a>
-                </li>
-                <li>
-                    <a href=\"portfolio?portfolio\">Портфолио</a>
-                </li>
-                <li>
-                    <a href=\"/posts?posts\">Новости</a>
-                </li>
-                <li>
-                    <a href=\"/page?page/contacts\">Контакты</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
+        ";
+        // line 51
+        $this->displayBlock('sidebar', $context, $blocks);
+        // line 76
+        echo "        <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id=\"page-content-wrapper\">
             <div class=\"container-fluid\">
                 <div class=\"row\">
                     <div class=\"col-lg-12\">
                         ";
-        // line 63
+        // line 82
+        $this->loadTemplate("login_view.html.twig", "template_view.html.twig", 82)->display($context);
+        // line 83
+        echo "                        ";
         $this->displayBlock('content', $context, $blocks);
-        // line 64
+        // line 84
         echo "                    </div>
                 </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src=\"/js/jquery.js\"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src=\"/js/bootstrap.min.js\"></script>
-
-    <!-- Menu Toggle Script -->
-
+    <!-- /#wrapper --> 
 </body>
 
 </html>";
@@ -131,11 +108,66 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
     public function block_js($context, array $blocks = array())
     {
         // line 21
-        echo "        <script type=\"text/javascript\" src=\"/ckeditor/ckeditor.js\"></script>
+        echo "        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>
+        <script type=\"text/javascript\" src=\"/vendor/ckeditor/ckeditor.js\"></script>
+        <script type=\"text/javascript\" src=\"/js/login.js\"></script>
+        <script>
+            \$(document).ready(function(){
+                //Скрыть PopUp при загрузке страницы    
+                PopUpHide();
+            });
+            //Функция отображения PopUp
+            function PopUpShow(){
+                \$(\"#popup1\").show();
+            }
+            //Функция скрытия PopUp
+            function PopUpHide(){
+                \$(\"#popup1\").hide();
+            }
+        </script>
     ";
     }
 
-    // line 63
+    // line 51
+    public function block_sidebar($context, array $blocks = array())
+    {
+        // line 52
+        echo "        <div id=\"sidebar-wrapper\">
+            <div class=\"title_sidebar\">
+            </div>
+            <ul class=\"sidebar-nav\">
+                ";
+        // line 56
+        $this->displayBlock('navigation', $context, $blocks);
+        // line 73
+        echo "            </ul>
+        </div>
+        ";
+    }
+
+    // line 56
+    public function block_navigation($context, array $blocks = array())
+    {
+        // line 57
+        echo "                <li class=\"sidebar-brand\">
+                    <a href=\"javascript:PopUpShow()\">Войти</a>
+                </li>
+                <li>
+                    <a href=\"/\">Главная</a>
+                </li>
+                <li>
+                    <a href=\"portfolio?portfolio\">Портфолио</a>
+                </li>
+                <li>
+                    <a href=\"/posts?posts\">Новости</a>
+                </li>
+                <li>
+                    <a href=\"/page?page/contacts\">Контакты</a>
+                </li>
+                ";
+    }
+
+    // line 83
     public function block_content($context, array $blocks = array())
     {
     }
@@ -145,9 +177,14 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
         return "template_view.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  139 => 63,  134 => 21,  131 => 20,  125 => 16,  122 => 15,  116 => 12,  93 => 64,  91 => 63,  49 => 23,  47 => 20,  44 => 19,  42 => 15,  36 => 12,  23 => 1,);
+        return array (  171 => 83,  152 => 57,  149 => 56,  143 => 73,  141 => 56,  135 => 52,  132 => 51,  111 => 21,  108 => 20,  102 => 16,  99 => 15,  93 => 12,  80 => 84,  77 => 83,  75 => 82,  67 => 76,  65 => 51,  51 => 39,  49 => 20,  46 => 19,  44 => 15,  38 => 12,  25 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
@@ -170,7 +207,23 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
 /*     {% endblock %}*/
 /*     */
 /*     {% block js %}*/
-/*         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>*/
+/*         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*/
+/*         <script type="text/javascript" src="/vendor/ckeditor/ckeditor.js"></script>*/
+/*         <script type="text/javascript" src="/js/login.js"></script>*/
+/*         <script>*/
+/*             $(document).ready(function(){*/
+/*                 //Скрыть PopUp при загрузке страницы    */
+/*                 PopUpHide();*/
+/*             });*/
+/*             //Функция отображения PopUp*/
+/*             function PopUpShow(){*/
+/*                 $("#popup1").show();*/
+/*             }*/
+/*             //Функция скрытия PopUp*/
+/*             function PopUpHide(){*/
+/*                 $("#popup1").hide();*/
+/*             }*/
+/*         </script>*/
 /*     {% endblock %}*/
 /*     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->*/
 /*     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->*/
@@ -184,12 +237,14 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
 /* <body>*/
 /*     <div id="wrapper">*/
 /*         <!-- Sidebar -->*/
+/*         {% block sidebar %}*/
 /*         <div id="sidebar-wrapper">*/
 /*             <div class="title_sidebar">*/
 /*             </div>*/
 /*             <ul class="sidebar-nav">*/
+/*                 {% block navigation %}*/
 /*                 <li class="sidebar-brand">*/
-/*                     <a href="/login">Войти</a>*/
+/*                     <a href="javascript:PopUpShow()">Войти</a>*/
 /*                 </li>*/
 /*                 <li>*/
 /*                     <a href="/">Главная</a>*/
@@ -203,33 +258,25 @@ class __TwigTemplate_6218f2ec13d7c71ff4c50d12e84c8ab21606970a1c67ced42d22d522193
 /*                 <li>*/
 /*                     <a href="/page?page/contacts">Контакты</a>*/
 /*                 </li>*/
+/*                 {% endblock %}*/
 /*             </ul>*/
 /*         </div>*/
+/*         {% endblock %}*/
 /*         <!-- /#sidebar-wrapper -->*/
-/* */
 /*         <!-- Page Content -->*/
 /*         <div id="page-content-wrapper">*/
 /*             <div class="container-fluid">*/
 /*                 <div class="row">*/
 /*                     <div class="col-lg-12">*/
+/*                         {% include 'login_view.html.twig' %}*/
 /*                         {% block content %}{% endblock %}*/
 /*                     </div>*/
 /*                 </div>*/
 /*             </div>*/
 /*         </div>*/
 /*         <!-- /#page-content-wrapper -->*/
-/* */
 /*     </div>*/
-/*     <!-- /#wrapper -->*/
-/* */
-/*     <!-- jQuery -->*/
-/*     <script src="/js/jquery.js"></script>*/
-/* */
-/*     <!-- Bootstrap Core JavaScript -->*/
-/*     <script src="/js/bootstrap.min.js"></script>*/
-/* */
-/*     <!-- Menu Toggle Script -->*/
-/* */
+/*     <!-- /#wrapper --> */
 /* </body>*/
 /* */
 /* </html>*/

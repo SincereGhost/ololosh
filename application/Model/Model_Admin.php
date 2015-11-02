@@ -15,6 +15,11 @@ class Model_Admin extends Model
         $postResult = [];
         $postResult['title'] = $_POST['title'];
         $postResult['content'] = $_POST['txt'];
+        if (!empty($_POST['description'])){
+            $postResult['description'] = $_POST['description'];
+        } else {
+            $postResult['description'] = mb_substr($postResult['content'], 0, 50, 'utf-8').'...';
+        }
         if(empty($_POST['url'])){
             $st = strtr($_POST['title'], 
                 array(
@@ -50,7 +55,7 @@ class Model_Admin extends Model
     {
         if ($table != 'manager_user') {
             try {
-                $data = $this->connect()->query("SELECT id, title, content, url FROM  $table");
+                $data = $this->connect()->query("SELECT id, title, content, description, url FROM  $table");
                 $result=[];
                 $i=0;
                 $count = $data->num_rows - 1;
@@ -59,24 +64,20 @@ class Model_Admin extends Model
                         $result[]=mysqli_fetch_assoc($data);
                         $i++;
                     }
-                    $resultNew = array_reverse($result);
-                    $val=[];
-                    foreach ($resultNew as $value)
-                    {       
-                        $value['content'] = mb_substr($value['content'], 0, 50, 'utf-8').'...';
-                        $val[] = $value;
-                    }
+                    $val = array_reverse($result);
+                    
                     $val[0]['class'] = '';
                     $val[0]['templateName'] = 'listResultAdmin_view';
                 } else {
                     $val[0]['title'] = 'Еще нет ниодной записи, добавте...';
                     $val[0]['content'] = 'Здесь будет отображен контент ваших записей...';
                     $val[0]['class'] = ' display_non';
+                    $val[0]['templateName'] = 'listResultAdmin_view';
                 }
             } catch (Exception $ex) {
                 echo $ex->getMessage();
             }
-        } else {
+        } elseif ($table === 'manager_user') {
             try {
                 $data = $this->connect()->query("SELECT id, login FROM  $table");
                 $result=[];
@@ -108,10 +109,10 @@ class Model_Admin extends Model
         return $result_one;
     }
     
-    public function updateContent($title, $content, $urlCont, $table, $url)
+    public function updateContent($title, $content, $description, $urlCont, $table, $url)
     {
         try {
-            $data = $this->connect()->query("UPDATE $table SET title='$title', content='$content', url='$urlCont' WHERE url='$url'");
+            $data = $this->connect()->query("UPDATE $table SET title='$title', content='$content', description='$description', url='$urlCont' WHERE url='$url'");
             header('location:/admin?'.$table);
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -130,10 +131,10 @@ class Model_Admin extends Model
         return ($data)? 'Успеx':'Не успех';
     }
     
-    public function addPost($title, $content, $url, $table)
+    public function addPost($title, $content, $description, $url, $table)
     {
         try {
-            $data = $this->connect()->query("INSERT INTO $table (title,content,url) VALUES ('$title','$content','$url')");
+            $data = $this->connect()->query("INSERT INTO $table (title,content,description,url) VALUES ('$title','$content','$description','$url')");
             header('location:/admin?'.$table);
         } catch (Exception $ex) {
             echo $ex->getMessage();

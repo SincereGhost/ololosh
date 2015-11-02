@@ -19,9 +19,10 @@ class Controller
         ));
         $this->view->addGlobal('url', $this->router);
         $this->view->addExtension(new Twig_Extension_Debug());
-        $this->view->addGlobal('user', $_SESSION['userName']);
+        if (isset($_SESSION['userName'])) {
+            $this->view->addGlobal('user', $_SESSION['userName']);
+        }
     }
-
 
     // действие (action), вызываемое по умолчанию
     function action_index($getUrl)

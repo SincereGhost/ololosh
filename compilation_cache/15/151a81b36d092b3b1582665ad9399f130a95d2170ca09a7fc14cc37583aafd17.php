@@ -50,7 +50,7 @@ class __TwigTemplate_1daf0bf1e843882b2e800a092615bb6a22ae303b2154ed750df71383fd3
             <div class=\"panel-body\">
                 <p>";
             // line 12
-            echo $this->getAttribute($context["content"], "content", array(), "array");
+            echo $this->getAttribute($context["content"], "description", array(), "array");
             echo "</p>
             </div>
             <div class=\"panel-footer ";
@@ -104,7 +104,7 @@ class __TwigTemplate_1daf0bf1e843882b2e800a092615bb6a22ae303b2154ed750df71383fd3
 /*                 <h3 class="panel-title">{{ content['title']|raw }}</h3>*/
 /*             </div>*/
 /*             <div class="panel-body">*/
-/*                 <p>{{ content['content']|raw }}</p>*/
+/*                 <p>{{ content['description']|raw }}</p>*/
 /*             </div>*/
 /*             <div class="panel-footer {{content['class']}}">*/
 /*                <a href="?{{urlPage}}/{{content['url']}}" class="btn btn-lg btn-success btn-block edit_button">Редактировать</a>*/

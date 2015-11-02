@@ -22,4 +22,9 @@ class Controller_Login extends Controller
             header('location:/admin');
         }
     }
+    
+    public static function log($post)
+    {
+        self::action_index();
+    }
 }

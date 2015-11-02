@@ -36,15 +36,17 @@ class __TwigTemplate_9975e04e3618e23c5781ed3f4d494c5187cb415ab9104652189a2065b29
         <input type=\"text\" name=\"url\" value=\"\"/>
         <label>Редактировать контент</label>
         <textarea id=\"editor1\" name=\"txt\" cols=\"100\" rows=\"20\"></textarea>
+        <label>Редактировать описание</label>
+        <textarea id=\"editor2\" name=\"description\" cols=\"120\"></textarea>
         <button type=\"submit\">Сохранить</button>
     </form>
 ";
     }
 
-    // line 13
+    // line 15
     public function block_jsPage($context, array $blocks = array())
     {
-        // line 14
+        // line 16
         echo "    <script type=\"text/javascript\">
         var ckeditor1 = CKEDITOR.replace( 'editor1' );
         AjexFileManager.init({
@@ -67,7 +69,7 @@ class __TwigTemplate_9975e04e3618e23c5781ed3f4d494c5187cb415ab9104652189a2065b29
 
     public function getDebugInfo()
     {
-        return array (  48 => 14,  45 => 13,  32 => 3,  29 => 2,  11 => 1,);
+        return array (  50 => 16,  47 => 15,  32 => 3,  29 => 2,  11 => 1,);
     }
 }
 /* {% extends 'adminTemplate.html.twig' %}*/
@@ -79,6 +81,8 @@ class __TwigTemplate_9975e04e3618e23c5781ed3f4d494c5187cb415ab9104652189a2065b29
 /*         <input type="text" name="url" value=""/>*/
 /*         <label>Редактировать контент</label>*/
 /*         <textarea id="editor1" name="txt" cols="100" rows="20"></textarea>*/
+/*         <label>Редактировать описание</label>*/
+/*         <textarea id="editor2" name="description" cols="120"></textarea>*/
 /*         <button type="submit">Сохранить</button>*/
 /*     </form>*/
 /* {% endblock %}*/

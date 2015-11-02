@@ -1,18 +1,8 @@
 <?php
 
+
 class Model
-{
-	
-    /*
-        Модель обычно включает методы выборки данных, это могут быть:
-        > методы нативных библиотек pgsql или mysql;
-        > методы библиотек, реализующих абстракицю данных. Например, методы библиотеки PEAR MDB2;
-        > методы ORM;
-        > методы для работы с NoSQL;
-        > и др.
-    */
-    // Метод подключения к базе данныхs
-    
+{    
     public function connect()
     { 
         $connect = '';
@@ -25,8 +15,47 @@ class Model
         
         return $connect;
     }
+    
+    public function login($post)
+    {
+        self::connect();
+        if (!isset($_SESSION['user'])) {
+            if ((isset($_POST['username'])) && (isset($_POST['password']))) {
+                $data = self::autoriz($_POST['username'], $_POST['password']);
+            }
+            
+        } else {
+        }
+ 
+       return $data;
+    }
+    
+    public function autoriz($login, $pass)
+    {
+        $errAutoriz = false;
+        $trueAutoriz = true;
+        $login_1 = trim($login);
+        $login_2 = stripslashes($login_1);
+        $login_3 = strip_tags($login_2);
+        $login_4 = htmlspecialchars($login_3);
+        $loginFin = mb_strtolower($login_4, 'UTF-8');
+        $heshPass=md5($pass);
+        $dbLogin = $this->connect()->query("SELECT login, password FROM manager_user WHERE login='$loginFin' AND password='$heshPass'");
+        $loginDB = mysqli_fetch_assoc($dbLogin);
+        if ($loginDB != null)
+        {
+            
+            $_SESSION['user'] = true;
+            $_SESSION['userName'] = $loginDB['login'];
+            return $trueAutoriz;
+        } else {
+            return $errAutoriz;
+        }
+    }
+    
+    
 
-        // метод выборки данных
+    // метод выборки данных
     public function get_data()
     {
             // todo

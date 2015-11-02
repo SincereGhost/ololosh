@@ -48,6 +48,11 @@ class __TwigTemplate_d7f63b2a147a0b2f02d4b4ffb826dacb9aa7c0b708dbe60b50778f7e956
         // line 13
         echo $this->getAttribute((isset($context["content"]) ? $context["content"] : null), "content", array(), "array");
         echo "</textarea>
+                <label>Редактировать описание</label>
+        <textarea id=\"editor2\" name=\"description\" cols=\"115\" rows=\"10\">";
+        // line 15
+        echo $this->getAttribute((isset($context["content"]) ? $context["content"] : null), "description", array(), "array");
+        echo "</textarea>
             </div>
             <button type=\"submit\">Сохранить</button>
         </form>
@@ -67,7 +72,7 @@ class __TwigTemplate_d7f63b2a147a0b2f02d4b4ffb826dacb9aa7c0b708dbe60b50778f7e956
 
     public function getDebugInfo()
     {
-        return array (  49 => 13,  42 => 9,  37 => 7,  31 => 3,  28 => 2,  11 => 1,);
+        return array (  54 => 15,  49 => 13,  42 => 9,  37 => 7,  31 => 3,  28 => 2,  11 => 1,);
     }
 }
 /* {% extends 'adminTemplate.html.twig' %}*/
@@ -83,6 +88,8 @@ class __TwigTemplate_d7f63b2a147a0b2f02d4b4ffb826dacb9aa7c0b708dbe60b50778f7e956
 /*             <div class="panel-body">*/
 /*                 <label>Редактировать контент</label>*/
 /*                 <textarea id="editor1" name="txt" cols="100" rows="20">{{ content['content']|raw }}</textarea>*/
+/*                 <label>Редактировать описание</label>*/
+/*         <textarea id="editor2" name="description" cols="115" rows="10">{{ content['description']|raw }}</textarea>*/
 /*             </div>*/
 /*             <button type="submit">Сохранить</button>*/
 /*         </form>*/

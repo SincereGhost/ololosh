@@ -7,6 +7,7 @@ session_start();
 //    require_once __DIR__.'/core/'.$class.'.php';
 //}
 require_once __DIR__.'/Core/config.php';
+//require_once 'Core/login.php';
 require_once './vendor/autoload.php';
 require_once 'Core/View.php';
 require_once 'Core/Controller.php';
@@ -53,3 +54,4 @@ spl_autoload_register(function ($class) {
 require __DIR__ . '/Routing/func.php';
 //var_dump(__DIR__.'/../vendor/Routing/func.php');
 require_once __DIR__ .'/Routing.php';
+//
