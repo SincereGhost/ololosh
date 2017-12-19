@@ -8,7 +8,7 @@ class Model_Logout extends Model
             unset($_SESSION['user']);
             unset($_SESSION['userName']);
             header('location:/');
-	} 
+        }
     }
 }
 

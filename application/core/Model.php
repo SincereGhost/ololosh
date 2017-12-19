@@ -2,7 +2,7 @@
 
 class Model
 {
-	
+
     /*
         Модель обычно включает методы выборки данных, это могут быть:
         > методы нативных библиотек pgsql или mysql;
@@ -12,9 +12,9 @@ class Model
         > и др.
     */
     // Метод подключения к базе данныхs
-    
+
     public function connect()
-    { 
+    {
         $connect = '';
         try {
             $connect = new Mysqli(HOST, USERNAME, PASSWORD, DATABASE);
@@ -22,13 +22,13 @@ class Model
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
-        
+
         return $connect;
     }
 
-        // метод выборки данных
+    // метод выборки данных
     public function get_data()
     {
-            // todo
+        // todo
     }
 }

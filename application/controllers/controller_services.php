@@ -7,7 +7,7 @@ class Controller_Services extends Controller
         $this->model = new Model_Services();
         parent::__construct();
     }
-    
+
     function action_index()
     {
         $data = $this->model->getData();

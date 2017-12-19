@@ -8,9 +8,9 @@
     <button type="submit">Сохранить</button>
 </form>
 <script type="text/javascript">
-    var ckeditor1 = CKEDITOR.replace( 'editor1' );
+    var ckeditor1 = CKEDITOR.replace('editor1');
     AjexFileManager.init({
-            returnTo: 'ckeditor',
-            editor: ckeditor1
+        returnTo: 'ckeditor',
+        editor: ckeditor1
     });
 </script>

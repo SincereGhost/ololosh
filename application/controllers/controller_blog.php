@@ -2,13 +2,13 @@
 
 class Controller_Blog extends Controller
 {
-    
-    public function __construct() 
+
+    public function __construct()
     {
         $this->model = new Model_Blog();
         parent::__construct();
     }
-        
+
     public function action_index()
     {
         if (empty($_GET)) {
@@ -19,7 +19,7 @@ class Controller_Blog extends Controller
             $data = $this->model->getContentOneNews($mykey);
             $this->view->generate('single_view.php', $data);
         }
-        
+
     }
 
 }
