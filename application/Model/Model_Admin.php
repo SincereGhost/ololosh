@@ -53,19 +53,20 @@ class Model_Admin extends Model
     
     public function getContentList($table)
     {
+
         if ($table != 'manager_user') {
             try {
                 $data = $this->connect()->query("SELECT id, title, content, description, url FROM  $table");
-                $result=[];
+
                 $i=0;
-                $count = $data->num_rows - 1;
-                if ($count >= 0){
+                $count = $data? $data->num_rows - 1 : 0;
+                if ($count >= 0 && $data){
                     while ($i<=$count){
                         $result[]=mysqli_fetch_assoc($data);
                         $i++;
                     }
                     $val = array_reverse($result);
-                    
+
                     $val[0]['class'] = '';
                     $val[0]['templateName'] = 'listResultAdmin_view';
                 } else {
@@ -82,7 +83,7 @@ class Model_Admin extends Model
                 $data = $this->connect()->query("SELECT id, login FROM  $table");
                 $result=[];
                 $i=0;
-                $count = $data->num_rows - 1;
+                $count = $data? $data->num_rows - 1 : 0;
                     while ($i<=$count){
                         $result[]=mysqli_fetch_assoc($data);
                         $i++;

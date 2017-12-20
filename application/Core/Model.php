@@ -18,6 +18,7 @@ class Model
     
     public function login($post)
     {
+        $data = null;
         self::connect();
         if (!isset($_SESSION['user'])) {
             if ((isset($_POST['username'])) && (isset($_POST['password']))) {
@@ -39,12 +40,11 @@ class Model
         $login_3 = strip_tags($login_2);
         $login_4 = htmlspecialchars($login_3);
         $loginFin = mb_strtolower($login_4, 'UTF-8');
-        $heshPass=md5($pass);
+        $heshPass = md5($pass);
         $dbLogin = $this->connect()->query("SELECT login, password FROM manager_user WHERE login='$loginFin' AND password='$heshPass'");
         $loginDB = mysqli_fetch_assoc($dbLogin);
         if ($loginDB != null)
         {
-            
             $_SESSION['user'] = true;
             $_SESSION['userName'] = $loginDB['login'];
             return $trueAutoriz;
