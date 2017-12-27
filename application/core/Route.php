@@ -49,6 +49,7 @@ class Route
         // подцепляем файл с классом контроллера
         $controller_file = strtolower($controller_name) . '.php';
         $controller_path = "application/controllers/" . $controller_file;
+
         if (file_exists($controller_path)) {
             include "application/controllers/" . $controller_file;
         } else {
@@ -61,11 +62,19 @@ class Route
 
         // создаем контроллер
         $controller = new $controller_name;
-        $action = $action_name;
+        $action_name;
 
-        if (method_exists($controller, $action)) {
+        //получаем ссылку на запись в базе $routes[3]
+        $url = null;
+        if (isset($routes[3]) && !empty($routes[3])) {
+            $url = $routes[3];
+        }
+
+        if (method_exists($controller, $action_name) && !$url) {
             // вызываем действие контроллера
-            $controller->$action();
+            $controller->$action_name();
+        } elseif (method_exists($controller, $action_name) && $url) {
+            $controller->$action_name($url);
         } else {
             // здесь также разумнее было бы кинуть исключение
             Route::ErrorPage404();

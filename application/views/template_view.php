@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <title>ОЛОЛОША TEAM</title>
+    <title>ОЛОЛОША TEAM <?php echo isset($data['site_t'])? ' / '.$data['site_t'] : ""; ?></title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>

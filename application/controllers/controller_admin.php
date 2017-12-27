@@ -2,8 +2,6 @@
 
 class Controller_Admin extends Controller
 {
-    public $link;
-
     public function __construct()
     {
         $this->model = new Model_Admin();
@@ -12,34 +10,26 @@ class Controller_Admin extends Controller
 
     public function action_index()
     {
-        if (!isset($_SESSION['user'])) {
-            $this->view->generate('login_view.php');
-        } else {
-            if (empty($_GET)) {
-                $data = 'Добро пожаловать ' . $_SESSION['userName'];
-                $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
-            } else {
-                $mykey = key($_GET);
-                $fulUrl = explode('/', $mykey);
-                if (empty($fulUrl[1])) {
-                    $data = $this->model->getContentOne($fulUrl[0]);
-                    $this->view->generate('listResultAdmin_view.php', $data, 'adminTemplateView.php');
-                } else {
-                    if (!empty($_POST)) {
-                        $data = $this->model->updateContent();
-                        $this->view->generate('admin_view.php', $data, 'adminTemplateView.php');
-                    } else {
-                        $data = $this->model->getContent($fulUrl[0], $fulUrl[1]);
-                        $this->view->generate('editAdmin_view.php', $data, 'adminTemplateView.php');
-                    }
-                }
-            }
-        }
+        $this->view->generate('admin_view.php', [], 'adminTemplateView.php');
     }
 
-    public static function menu()
+    public function action_articles()
     {
-        $test = 'privet';
-        echo $test;
+        $data = $this->model->getArticles();
+        $this->view->generate('admin_articles_view.php', $data, 'adminTemplateView.php');
+    }
+
+    public function action_articleUpdate($id)
+    {
+        if (isset($_POST) && !empty($_POST)) {
+            $this->model->updateArticle($_POST);
+        }
+        $data = $this->model->getArticleById($id);
+        $this->view->generate('admin_articles_update_view.php', $data, 'adminTemplateView.php');
+    }
+
+    public function action_articleInsert()
+    {
+
     }
 }

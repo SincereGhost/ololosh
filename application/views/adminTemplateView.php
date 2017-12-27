@@ -1,125 +1,88 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <title>ОЛОЛОША TEAM</title>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
-    <link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        // return a random integer between 0 and number
-        function random(number) {
 
-            return Math.floor(Math.random() * (number + 1));
-        };
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        // show random quote
-        $(document).ready(function () {
+    <title>Simple Sidebar - Start Bootstrap Template</title>
 
-            var quotes = $('.quote');
-            quotes.hide();
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-            var qlen = quotes.length; //document.write( random(qlen-1) );
-            $('.quote:eq(' + random(qlen - 1) + ')').show(); //tag:eq(1)
-        });
-    </script>
+    <!-- Custom styles for this template -->
+    <link href="../../vendor/css/simple-sidebar.css" rel="stylesheet">
+
 </head>
+
 <body>
-<div id="wrapper">
-    <div id="header">
-        <div id="logo">
-            <a href="/">ОЛОЛОША</span> <span class="cms">TEAM</span></a>
-        </div>
-        <div id="menu">
-            <ul>
-                <li class="first active"><a href="/">Главная</a></li>
-                <li><a href="/services">Услуги</a></li>
-                <li><a href="/portfolio">Портфолио</a></li>
-                <li><a href="/contacts">Контакты</a></li>
-                <li class="last"><a href="/blog">Блог</a></li>
-            </ul>
-            <br class="clearfix"/>
-        </div>
-    </div>
-    <div id="page">
-        <div id="sidebar">
-            <div class="side-box">
-                <h3>Редактирования контента</h3>
-                <ul class="list">
-                    <li class="first "><a href="/">Главная!</a></li>
-                    <li><a href="/admin?page/uslugi">Услуги</a></li>
-                    <li><a href="/portfolio">Портфолио</a></li>
-                    <li class="last"><a href="/contacts">Контакты</a></li>
-                    <li class="last"><a href="/admin?posts">Блог</a></li>
-                    <?php
-                    if (isset($_SESSION['userName'])) {
-                        echo '<li class="last"><a href="/logout">Logout</a></li>';
-                        echo '<li>Вы вошли как: ' . $_SESSION['userName'] . '</li>';
-                    } else {
-                        echo '<li class="last"><a href="/login">Login</a></li>';
-                    }
-                    ?>
+
+<div id="wrapper" class="toggled">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Start Bootstrap
+                </a>
+            </li>
+            <li>
+                <a href="javaScript:void(0)">Articles</a>
+                <ul>
+                    <li><a href="/admin/articles">Articles list</a></li>
+                    <li><a href="/admin/articleInsert">Add articles</a></li>
                 </ul>
-            </div>
-        </div>
-        <div id="content">
-            <div class="box">
-                <?php include 'application/views/' . $content_view; ?>
-                <!--
-                <h2>Welcome to Accumen</h2>
-                <img class="alignleft" src="images/pic01.jpg" width="200" height="180" alt="" />
-                <p>
-                        This is <strong>Accumen</strong>, a free, fully standards-compliant CSS template by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>. The images used in this template are from <a href="http://fotogrph.com/">Fotogrph</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attributions 3.0</a> license, so you are pretty much free to do whatever you want with it (even use it commercially) provided you keep the footer credits intact. Aside from that, have fun with it :)
-                </p>
-                -->
-            </div>
-            <br class="clearfix"/>
-        </div>
-        <br class="clearfix"/>
+            </li>
+            <li>
+                <a href="#">Shortcuts</a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
     </div>
-    <div id="page-bottom">
-        <div id="page-bottom-sidebar">
-            <h3>Наши контакты</h3>
-            <ul class="list">
-                <li class="first">icq: 199199538</li>
-                <li>skypeid: vitalyswipe</li>
-                <li class="last">email: vitalyswipe@gmail.com</li>
-            </ul>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <?php include 'application/views/' . $content_view; ?>
         </div>
-        <div id="page-bottom-content">
-            <h3>О Компании</h3>
-            <p>
-                Вот дом.
-                Который построил Джек.
-
-                А это пшеница.
-                Которая в тёмном чулане хранится
-                В доме,
-                Который построил Джек.
-
-                А это весёлая птица-синица,
-                Которая ловко ворует пшеницу,
-                Которая в тёмном чулане хранится
-                В доме,
-                Который построил Джек.
-
-                Вот кот,
-                Который пугает и ловит синицу,
-                Которая ловко ворует пшеницу,
-                Которая в тёмном чулане хранится
-                В доме,
-                Который построил Джек.
-            </p>
-        </div>
-        <br class="clearfix"/>
     </div>
+    <!-- /#page-content-wrapper -->
+
 </div>
-<div id="footer">
-    <a href="/">ОЛОЛОША TEAM</a> &copy; 2012</a>
-</div>
+<!-- /#wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="../../vendor/scripts/jquery/jquery.min.js"></script>
+<script src="../../vendor/scripts/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
 </body>
+
 </html>
+

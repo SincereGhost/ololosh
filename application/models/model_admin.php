@@ -2,31 +2,31 @@
 
 class Model_Admin extends Model
 {
-    public function getContentOne($table)
+    public function getArticles()
     {
-        $result = [];
+        $data = null;
         try {
-            $data = $this->connect()->query("SELECT * FROM  $table");
-            if ($data) {
-                $i = 0;
-                $count = $data->num_rows - 1;
-                while ($i <= $count) {
-                    $result[] = mysqli_fetch_assoc($data);
-                    $i++;
-                }
-            }
+            $data = $this->connect()->query("SELECT * FROM  posts");
+
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
+        if ($data) {
+            $result = [];
+            while ($result[] = mysqli_fetch_assoc($data)) {
+            }
 
-        return $result;
+            return $result;
+        }
+
+        return $data;
     }
 
-    public function getContent($table, $url)
+    public function getArticleById($id)
     {
         $result_one = null;
         try {
-            $data = $this->connect()->query("SELECT * FROM  $table WHERE url='$url'");
+            $data = $this->connect()->query("SELECT * FROM  posts WHERE id='$id'");
             if ($data) {
                 $result_one = mysqli_fetch_assoc($data);
             }
@@ -37,12 +37,9 @@ class Model_Admin extends Model
         return $result_one;
     }
 
-    public function updateContent()
+    public function updateArticle($data)
     {
-        $data = 'ok';
-        header('location:/');
 
-        return $data;
     }
 }
 
