@@ -40,8 +40,7 @@ class Model_Admin extends Model
     public function updateArticle($data)
     {
         $url = $data['title'];
-        $this->parserUrl($url);
-        $url = $this->testUrl($url);
+        $url = $this->parserUrl($url);
 
         $title = $data['title'];
         $content = $data['content'];
@@ -50,14 +49,30 @@ class Model_Admin extends Model
         try {
             $data = $this->connect()->query("UPDATE posts SET  `title` = '$title', `content` = '$content', `url` = '$url' WHERE `id` = $id");
         } catch (Exception $ex) {
-            echo $ex->getMessage();
+            return $ex->getMessage();
         }
+
         return $data;
     }
 
-    public function parserUrl($url)
+    public function articleInsert($data)
     {
-        //$url = $_POST['title'];
+        $url = $this->testUrl($this->parserUrl($data['title']));
+        $title = $data['title'];
+        $content = $data['content'];
+
+        try {
+            $this->connect()->query("INSERT INTO `posts` ( `title`, `content`, `url`) VALUES ( '$title', '$content', '$url')");
+            $data = $this->getArticleByUrl($url);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+
+        return $data;
+    }
+
+    private function parserUrl($url)
+    {
         $st = strtr($url,
             array(
                 'а'=>'a','б'=>'b','в'=>'v','г'=>'g','д'=>'d',
@@ -87,21 +102,20 @@ class Model_Admin extends Model
 
     }
 
-    public function testUrl($url)
+    private function testUrl($url)
     {
-        //var_dump($this->getArticleByUrl($url));
         if(!empty($this->getArticleByUrl($url))) {
-            $url = $url . 1;
+            $url = $url . '-1';
             $url = $this->getArticleByUrl($url);
         }
         return $url;
     }
 
-    public function getArticleByUrl($url)
+    private function getArticleByUrl($url)
     {
         $result_one = null;
         try {
-            $data = $this->connect()->query("SELECT url FROM  blog WHERE url='$url'");
+            $data = $this->connect()->query("SELECT * FROM posts WHERE url='$url'");
             if ($data) {
                 $result_one = mysqli_fetch_assoc($data);
             }
