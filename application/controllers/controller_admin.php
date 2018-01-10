@@ -22,7 +22,9 @@ class Controller_Admin extends Controller
     public function action_articleUpdate($id)
     {
         if (isset($_POST) && !empty($_POST)) {
-            $this->model->updateArticle($_POST);
+            $data = $_POST;
+            $data['id'] = $id;
+            $this->model->updateArticle($data);
         }
         $data = $this->model->getArticleById($id);
         $this->view->generate('admin_articles_update_view.php', $data, 'adminTemplateView.php');
