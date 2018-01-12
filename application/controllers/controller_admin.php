@@ -35,7 +35,7 @@ class Controller_Admin extends Controller
         if (isset($_POST) && !empty($_POST)) {
             $data = $_POST;
             $this->model->articleInsert($data);
-            header('Location: /admin/articleUpdate/'.$data['id']);
+            //header('Location: /admin/articleUpdate/'.$data['id']);
             exit;
         }
         $this->view->generate('admin_articles_insert_view.php', [], 'adminTemplateView.php');

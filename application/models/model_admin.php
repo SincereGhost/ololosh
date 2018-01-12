@@ -93,7 +93,10 @@ class Model_Admin extends Model
         //var_dump($this->getArticleByUrl($url));
         if(!empty($this->getArticleByUrl($url))) {
             $url = $url . 1;
+            var_dump($url);
+            echo 'after concat';
             $url = $this->getArticleByUrl($url);
+            var_dump($url);
         }
         return $url;
     }
@@ -116,9 +119,15 @@ class Model_Admin extends Model
     {
         $url = $this->testUrl($this->parserUrl($data['title']));
         $title = $data['title'];
+        var_dump($data);
         $content = $data['content'];
         try {
             $data = $this->connect()->query("INSERT INTO `posts` ( `title`, `content`, `url`) VALUES ( '$title', '$content', '$url')");
+            $getLastId = $this->connect()->query("SELECT id FROM  posts WHERE url=$url");
+            $lastId = mysqli_fetch_assoc($getLastId);
+            echo 'last id is '.$lastId['id'];
+            //$id = $lastId['id'];
+            //$data = $lastId;
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
