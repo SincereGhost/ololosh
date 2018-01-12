@@ -1,5 +1,5 @@
 <?php
-
+//ggsgsg
 class Controller_Admin extends Controller
 {
     public $link;
